@@ -4,12 +4,14 @@ Investigating Shortcut Learning in Deep Vision Models
 ## Branch Convention
 
 ### 브랜치 구조
+```
 main
 ├── feat/data-loading        # 데이터 로딩
 ├── feat/erm                 # ERM Baseline
 ├── feat/group-dro           # Group DRO
 ├── feat/bg-randomization    # Background Randomization
 └── feat/gradcam             # Grad-CAM 시각화
+```
 
 ### 규칙
 - `main` 브랜치에는 완성된 코드만 올립니다

@@ -19,16 +19,16 @@ main
 - 완성되면 main에 merge합니다
 
 ### 브랜치 생성 방법
-\```
+```
 git checkout -b feat/브랜치이름
-\```
+```
 
 ### 작업 후 push 방법
-\```
+```
 git add .
 git commit -m "add: 작업내용"
 git push origin feat/브랜치이름
-\```
+```
 
 ### 커밋 메시지 규칙
 | 태그 | 설명 |

@@ -224,8 +224,8 @@ def train_one_epoch(
         #   → label=1,place=0: 0*2+1=1 (Group 1) ★
         #   → label=0,place=1: 1*2+0=2 (Group 2) ★
         #   → label=0,place=0: 1*2+1=3 (Group 3)
-        place        = metadata[:, 1].to(device)
-        group_labels = (1 - labels) * 2 + (1 - place)
+        place        = metadata[:, 0].to(device)
+        group_labels = labels.to(device) * 2 + place
 
         # ── Background Randomization 적용 ─────────────────────────────
         images = randomize_background(
@@ -296,9 +296,9 @@ def evaluate(
         images = images.to(device)
 
         # group_labels는 CPU에서 계산 (GPU 연산 불필요)
-        place        = metadata[:, 1].long()        # 0=land, 1=water (CPU)
+        place        = metadata[:, 0].long()        # 0=land, 1=water (CPU)
         labels_cpu   = labels.long()                # CPU labels
-        group_labels = (1 - labels_cpu) * 2 + (1 - place)  # 0~3 (CPU)
+        group_labels = labels.cpu().long() * 2 + place  # 0~3 (CPU)
 
         # 평가 시에는 배경 randomization 적용 안 함 (원본 이미지로 평가)
         logits = model(images)
